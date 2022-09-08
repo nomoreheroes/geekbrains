@@ -117,4 +117,117 @@
 
 Чтобы получить псевдослучайное число в диапазоне от *min* до *max*, мы используем команду **new Random().Next(min,max+1)**
 
+## Пример №5: сложение двух случайных чисел
+
+    int numberA = new Random().Next(1,10);
+    int numberB = new Random().Next(1,10);
+    int result = numberA + numberB;
+    Console.WriteLine(result);
+
+## Пример №6: ветвление программы
+
+Если нам нужно, чтобы программа выполнялась по разному при разных условиях, мы используем оператор **if**:
+
+    if(условие) {
+        действие 1
+    } else {
+        действие 2
+    }
+
+Метод **string.ToLower** переводит строку в нижний регистр:
+
+    username.ToLower();
+
+Пример приложения:
+
+    Console.Write("Введите имя пользователя:");
+    string username = Console.ReadLine();
+    if(username.ToLower() == "маша")
+    {
+        Console.WriteLine("Ура, это же МАША!");
+    } else {
+        Console.Write("Привет, ");
+        Console.WriteLine(username);
+    }
+
+## Пример №7: решение задачи с гирями
+
+    int a = 1;
+    int b = 2;
+    int c = 6;
+    int d = 8;
+    int e = 4;
+
+    int max = a;
+    if(a > max) max = a;
+    if(b > max) max = b;
+    if(c > max) max = c;
+    if(d > max) max = d;
+    if(e > max) max = e;
+
+    Console.Write("max = ");
+    Console.WriteLine(max);
+
+## Пример №8: задача про точки (треугольник Серпинского)
+
+Чтобы очистить терминал можно использовать метод **Console.Clear()**.
+
+Чтобы установить произвольную позицию курсора, можно использовать метод **Console.SetCursorPosition(столбец, строка)**
+
+Синтаксис циклов:
+
+    while(УСЛОВИЕ ПРОДОЛЖЕНИЯ)
+    {
+        Набор действий
+    }
+
+Выполняем следующий алгоритм:
+1. Определить три точки
+2. Выбрать две любых
+3. Найти середину
+4. Поставить точку
+5. Выбрать случайную вершину треугольника
+6. Соединить ее с полученной на 4 шаге точкой
+7. Перейти к шагу 3
+8. Повторить шаги 3-7
+
+Пример приложения:
+
+    Console.Clear()
+
+    int xa = 1, ya = 1, xb = 1, yb = 30, xc = 40, yc = 30;
+
+    Console.SetCursorPosition(xa,ya);
+    Console.WriteLine("+");
+    Console.SetCursorPosition(xb,yb);
+    Console.WriteLine("+");
+    Console.SetCursorPosition(xc,yc);
+    Console.WriteLine("+");
+
+    int count = 0;
+    while(count < 1000) 
+    {
+        int what = new Random().Next(0,3);
+        if (what == 0) 
+        {
+            x = (x+xa)/2;
+            y = (y+ya)/2;
+        }
+
+        if (what == 1) 
+        {
+            x = (x+xb)/2;
+            y = (y+yb)/2;
+        }
+
+        if (what == 2) 
+        {
+            x = (x+xc)/2;
+            y = (y+yc)/2;
+        }
+
+        Console.SetCursorPosition(x,y);
+        Console.WriteLine("+");
+        count++;
+    }
 
