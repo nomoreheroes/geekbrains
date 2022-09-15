@@ -231,3 +231,223 @@
         count++;
     }
 
+## Функции (методы) в C#
+Функция - это часть программного кода, к которому можно обращаться несколько раз с разными параметрами (аргументами).
+Функция это "коробка" в которую передаются параметры и которая выдает результат.
+В C# нет обычных функций, есть только методы.
+
+Примеры:
+* Next(1,10);
+* WriteLine();
+
+**Основные элементы функции:**
+* Имя (идентификатор) функции
+* Входные параметры  (необязательно)
+* Может возвращать значение (необязательно)
+
+**Как выглядит функция в C#?**
+
+    ВозвращаемыйТипДанных ИмяМетода(ТипДанных1 ИмяАргумента1,...)
+    {
+        ТелоМетода
+        return ЗначениеСоответствующееВозвращаемомуТипуДанных;
+    }
+
+Пример функции:
+
+    double double(x)
+    {
+        double result = x*x+1;
+        return result;
+    }
+
+### Виды методов:
+* Методы, которые ничего не принимают и ничего не возвращают
+* Методы, которые принимают аргументы, но ничего не возвращают
+* Методы, которые ничего не принимают, но возвращают значение
+* Методы, которые принимают аргументы и возвращают значение
+
+**Можно передавать в метод _именованные аргументы_**:
+
+    void Message(string msg,int count)
+    {
+        //тело метода
+    }
+
+    Message(count:1,msg:"Сообщение");
+
+
+### Задача №9: найти максимум из 9 чисел
+
+    int Max(int arg1, int arg2, int arg3)
+    {
+        int result = 0;
+        if (arg1 > result) result = arg1;
+        if (arg2 > result) result = arg2;
+        if (arg3 > result) result = arg3;
+        return result;
+    }
+
+    int max1 = Max(a,b,c);
+    int max2 = Max(d,e,f);
+    int max3 = Max(g,h,i);
+    int max = Max(max1,max2,max3);
+    Console.WriteLine(max);
+
+## Массивы 
+Массив - это тип данных, в котором содержится несколько элементов по порядку. 
+
+У каждого элемента массива есть индекс (номер, который начинается с 0);
+
+*Как задается массив?*
+* ТИП_ДАННЫХ[] имя = {значение1, значение2,..}
+* int[] array = {0,1,4,2...}
+* int[] array = new int[] {0,1,4,2...}
+* int[] array = new int[5] {1,0,2,0,3}
+
+*Как получить элемент массива по индексу?*
+    
+    int elem = array[index];
+
+*Как получить размер массива?*
+
+    int len = array.Length;
+
+### Задача №10: найти максимум в массиве из 9 чисел
+
+    int[] array = {11,21,23,32,545,23,3,2,5};
+    int result = Max(
+        Max(array[0],array[1],array[2]),
+        Max(array[3],array[4],array[5]),
+        Max(array[6],array[7],array[8])
+    );
+    Console.WriteLine(result);
+
+### Задача №11: Поиск элемента в массиве
+
+    int array[] = {1,12,31,4,15,16,17,18};
+    int n = array.Length;
+    int find = 4;
+    int index = 0;
+    while(index < n)
+    {
+        if (array[index] == find)
+        {
+            Console.WriteLine(index);
+            index++;
+        }
+    }
+
+### Задача №12: Заполнение массива случайными числами и вывод массива
+
+    int array[] = new int[10];
+
+    void FillArray(int[] collection)
+    {
+        int length = collection.Length;
+        int index = 0;
+        while(index < length)
+        {
+            collection[index] = new Random().Next(1,10);
+            index++;
+        }
+    }
+
+    void PrintArray(int[] col)
+    {
+        int count = col.Length;
+        int position =0;
+        while(position < count)
+        {
+            Console.WriteLine(col[position]);
+            position++;
+        }
+    }
+
+    FillArray(array);
+    PrintArray(array);
+
+### Задача №13: Поиск элемента в массиве с помощью метода
+
+    int IndexOf(int[] collection,int find)
+    {
+        int count = collection.Length;
+        int index = 0;
+        int position =-1;
+
+        while(index < count)
+        {
+            if(collection[index] == find)
+            {
+                position = index;
+            }
+            index++;
+        }
+        return position;
+    }
+
+
+## Циклы в C#
+
+* While
+* For
+* Do While
+
+Синтаксис цикла **for**:
+
+    for(int i=0;i<10;i++)
+    {
+        Console.WriteLine(i);
+    }
+
+### Задача №14: Вывод таблицы умножения на экран
+
+    for(int i=2;i<=10;i++)
+    {
+        for(int j=2; j<=10;j++)
+        {
+            Console.WriteLine($"{i}X{j}={i*j}")
+        }
+        Console.WriteLine();
+    }
+
+### Задача №15: Заменить символы в строке
+
+    string text = "— Я думаю, — сказал князь, улыбаясь, — что,"
+    + "ежели бы вас послали вместо нашего милого "
+    + "Винценгероде, вы бы взяли приступом согласие " 
+    + "прусского короля. Вы так красноречивы. Вы "
+    + "дадите мне чаю?";
+
+    string Replace(string text, char oldValue,char newValue)
+    {
+        string result = String.Empty;
+        int length = text.Length;
+        for(int i=0;i<length;i++)
+        {
+            if(text[i] == oldValue) result += $"{newValue}";
+            else result = result + $"{text[i]}";
+        }
+        return result;
+    }
+
+    string new_text = Replace(text," ","|");
+
+### Задача №16: сортировка массива
+
+    int[] arr = {1,5,4,3,2,1,4,5}
+
+    void SelectionSort(int[] array)
+    {
+        for(int i=0;i<array.Length;i++)
+        {
+            int minPosition = i;
+            for(int j=i+1;j<length;j++)
+            {
+                if(array[i] < array[minPosition]) minPosition = j;
+            }            
+            int temp = array[i];
+            array[i] = array[minPosition];
+            array[minPosition] = temp;
+        }
+    }
